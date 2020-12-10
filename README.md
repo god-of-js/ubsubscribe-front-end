@@ -1,4 +1,4 @@
-# unsubscribe-front-end
+# unsubscribe
 
 ## Build Setup
 
