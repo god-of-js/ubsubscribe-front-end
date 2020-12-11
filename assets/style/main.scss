@@ -1,2 +1,7 @@
 @import './variables.scss';
 @import './mixins.scss';
+@import './transitions.scss';
+@import './fonts.scss';
+.no-link{
+    text-decoration: none;
+}

@@ -1,15 +1,15 @@
 <template>
   <div
     class="d-flex authentication pa-5 d-flex align-center flex-column justify-end"
-    :style="watchRoute ? 'height: 110%' : 'height: 90%'"
+    :style="register ? 'height: 80%' : 'height: 65%'"
   >
     <div class="d-flex justify-space-between links no-skew">
-      <span> Unsubscribe.io</span>
+      <span class="unsubcscribe-header unsubscribe" v-text="appName" />
       <div>
-        <NuxtLink to="/authentication/login">
+        <NuxtLink to="/authentication/login" class="mr-2 ml-2 nuxt-link no-link">
           Login
         </NuxtLink>
-        <NuxtLink to="/authentication/register">
+        <NuxtLink to="/authentication/register" class="mr-2 ml-2 nuxt-link no-link">
           Register
         </NuxtLink>
       </div>
@@ -27,7 +27,7 @@
             <v-icon color="red">
               mdi-close
             </v-icon>
-            <span>Subscribe</span>
+            <span v-text="'Subscribe'" />
           </div>
         </div>
         <div class="authentication__text">
@@ -40,9 +40,7 @@
         </div>
       </section>
       <section class="pa-5 authentication-subpage">
-        <transition mode="out-in">
-          <nuxt-child />
-        </transition>
+        <nuxt-child />
       </section>
     </div>
   </div>
@@ -52,9 +50,15 @@
 export default {
   name: 'Authentication',
   computed: {
-    watchRoute () {
+    register () {
       return this.$route.fullPath === '/authentication/register'
+    },
+    appName () {
+      return this.$store.state.app.appName
     }
+  },
+  head: {
+    title: 'Authentication'
   }
 }
 </script>
@@ -62,6 +66,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/style/mixins.scss";
 @import "@/assets/style/colors.scss";
+@import "@/assets/style/fonts.scss";
 .authentication {
   color: #000;
   @include background-gradient();
@@ -72,6 +77,7 @@ export default {
     text-align: center;
     background: $light-background;
     border-radius: 5px;
+    margin-bottom: -15%;
     @include box-shadow();
     &__header {
       margin-top: -52px;
@@ -105,5 +111,14 @@ export default {
 .links {
   width: 100%;
   margin-bottom: 20px;
+}
+.unsubscribe{
+  font-size: 1.2em;
+  color: $light-text;
+}
+.no-link{
+  text-decoration: none;
+  color: $light-text;
+  font-size: 0.8em;
 }
 </style>

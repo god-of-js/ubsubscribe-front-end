@@ -2,7 +2,6 @@
   <button
     :class="{
       'btn': true,
-      [btnClass]: true,
       'btn-disabled':loading || disabled
     }"
     :disabled="loading || disabled"
