@@ -1,7 +1,7 @@
-import { BASE_URL } from 'config'
+import Vue from 'vue'
 import axios from '@nuxtjs/axios'
 import get from 'lodash/get'
-import Vue from 'vue'
+import { BASE_URL } from '../config/config'
 export default (context, inject) => {
   const {
     $cookies
@@ -28,6 +28,7 @@ export default (context, inject) => {
   service.interceptors.response.use(
     response => response,
     (error) => {
+      // src of error.
       const data = get(error, 'response.data', {})
       Vue.$store.commit('notifications/setNotification', data)
     }
