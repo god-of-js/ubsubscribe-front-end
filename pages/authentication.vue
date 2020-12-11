@@ -1,7 +1,21 @@
 <template>
-  <div class="d-flex authentication pa-5 d-flex align-end justify-center" :style="watchRoute === '/authentication/register'? 'height: 110%': 'height: 80%'">
+  <div
+    class="d-flex authentication pa-5 d-flex align-center flex-column justify-end"
+    :style="watchRoute ? 'height: 110%' : 'height: 90%'"
+  >
+    <div class="d-flex justify-space-between links no-skew">
+      <span> Unsubscribe.io</span>
+      <div>
+        <NuxtLink to="/authentication/login">
+          Login
+        </NuxtLink>
+        <NuxtLink to="/authentication/register">
+          Register
+        </NuxtLink>
+      </div>
+    </div>
     <div
-      class="authentication__card pa-0 col-lg-4 col-md-5 col-sm-7 col-xsm-10"
+      class="authentication__card no-skew pa-0 col-lg-4 col-md-5 col-sm-7 col-xsm-10"
     >
       <section id="header" class="pa-5">
         <div
@@ -26,7 +40,9 @@
         </div>
       </section>
       <section class="pa-5 authentication-subpage">
-        <nuxt-child />
+        <transition mode="out-in">
+          <nuxt-child />
+        </transition>
       </section>
     </div>
   </div>
@@ -37,7 +53,7 @@ export default {
   name: 'Authentication',
   computed: {
     watchRoute () {
-      return this.$route.fullPath
+      return this.$route.fullPath === '/authentication/register'
     }
   }
 }
@@ -53,7 +69,6 @@ export default {
   transform: skew(0deg, -10deg) translateY(-120px);
   font-weight: 900;
   &__card {
-    transform: skew(0deg, 10deg);
     text-align: center;
     background: $light-background;
     border-radius: 5px;
@@ -68,19 +83,27 @@ export default {
       background: $light-background;
       @include box-shadow();
       font-weight: 700;
+      color: $primary-text-color;
     }
   }
   &__text {
     &__header {
       font-weight: 600;
       font-size: 1.3em;
+      color: $secondary-text-color;
     }
     &__sub-title {
       font-weight: 400;
       font-size: 1em;
+      color: $primary-text-color;
     }
   }
-  &-subpage {
-  }
+}
+.no-skew {
+  transform: skew(0deg, 10deg);
+}
+.links {
+  width: 100%;
+  margin-bottom: 20px;
 }
 </style>

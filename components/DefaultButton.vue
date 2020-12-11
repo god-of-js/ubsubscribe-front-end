@@ -3,16 +3,14 @@
     :class="{
       'btn': true,
       [btnClass]: true,
-      'btn-disabled':disabled
+      'btn-disabled':loading || disabled
     }"
-    v-bind="vBind"
-    :type="type"
     :disabled="loading || disabled"
-    v-on="vOn"
+    v-on="$listeners"
   >
-    <slot />
+    <slot v-if="!loading" />
     <div
-      v-if="loading"
+      v-else
       class="loader"
     >
       <v-progress-circular indeterminate />
@@ -24,32 +22,13 @@
 export default {
   name: 'DefaultButton',
   props: {
-    vOn: {
-      type: Object,
-      default: () => ({})
-    },
-    btnClass: {
-      type: String,
-      default: 'default-banger-btn'
-    },
-    vBind: {
-      type: Object,
-      default: () => ({})
-    },
     disabled: {
       type: Boolean,
       default: false
     },
-    onClick: {
-      type: Function,
-      default: () => {}
-    },
     loading: {
-      type: Boolean
-    },
-    type: {
-      type: String,
-      default: 'button'
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -68,10 +47,14 @@ export default {
     @include box-shadow();
     color: $light-text;
     &:active{
-      transform: scale(0.7, 0.7);
+      transform: scale(1.04, 1.03);
     }
     &:hover{
-      transform: scale(1.02, 1.02);
+      @include hover-gradient();
     }
+}
+.btn-disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 </style>

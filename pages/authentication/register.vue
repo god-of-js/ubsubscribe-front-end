@@ -1,11 +1,12 @@
 <template>
-  <form class="row pl-5 pr-5">
-    <input type="text" placeholder="Full Name" class="pa-3 mb-5" required>
-    <input type="email" placeholder="Email" class="pa-3 mb-5" required>
-    <input type="number" placeholder="Phone Number" class="pa-3 mb-5" required>
-    <input type="password" placeholder="Password" class="pa-3 mb-5" required>
-    <default-button
-          @click.native="register"> Register </default-button>
+  <form class="row pl-5 pr-5" @submit.prevent="register">
+    <input v-model="data.fullName" type="text" placeholder="Full Name" class="pa-3 mb-5" required>
+    <input v-model="data.email" type="email" placeholder="Email" class="pa-3 mb-5" required>
+    <input v-model.number="data.phoneNumber" type="number" placeholder="Phone Number" class="pa-3 mb-5" required>
+    <input v-model="data.password" type="password" placeholder="Password" class="pa-3 mb-5" required>
+    <default-button :loading="loading" :disabled="disabled">
+      Register
+    </default-button>
   </form>
 </template>
 <script>
@@ -22,7 +23,9 @@ export default {
         email: null,
         phoneNumber: null,
         password: null
-      }
+      },
+      loading: false,
+      disabled: false
     }
   },
   methods: {
