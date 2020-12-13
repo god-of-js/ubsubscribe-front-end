@@ -1,20 +1,18 @@
 import Vue from 'vue'
-import axios from '@nuxtjs/axios'
+import axios from 'axios'
 import get from 'lodash/get'
+import cookies from 'js-cookie'
 import { BASE_URL } from '../config/config'
 export default (context, inject) => {
-  const {
-    $cookies
-    // redirect
-  } = context
+  const { redirect } = context
   const saveToken = (token) => {
-    $cookies.set('AuthToken', token)
+    cookies.set('AuthToken', token)
   }
   const removeToken = () => {
-    $cookies.remove('AuthToken')
+    cookies.remove('AuthToken')
   }
   const getToken = () => {
-    $cookies.get('AuthToken')
+    cookies.get('AuthToken')
   }
   const token = getToken() || ''
   const config = {
@@ -28,9 +26,13 @@ export default (context, inject) => {
   service.interceptors.response.use(
     response => response,
     (error) => {
-      // src of error.
+      const status = get(error, 'response.data.status', null)
       const data = get(error, 'response.data', {})
-      Vue.$store.commit('notifications/setNotification', data)
+      if (status === 404) {
+        redirect('/404')
+      } else {
+        Vue.$store.commit('notifications/setNotification', data)
+      }
     }
   )
   const ApiService = {
@@ -38,5 +40,5 @@ export default (context, inject) => {
     removeToken,
     saveToken
   }
-  inject('ApiService', ApiService)
+  inject('apiService', ApiService)
 }

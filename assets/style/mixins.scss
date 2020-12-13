@@ -1,11 +1,24 @@
+@import './colors.scss';
 @mixin background-gradient() {
   background-color: #f977ce;
 background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
 
 }
 @mixin hover-gradient() {
-  background-color: #6617cb;
-background-image: linear-gradient(315deg, #6617cb 0%, #cb218e 74%);
+  background-color: $primary-darker-background;
+  border-style: solid;
+  border-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
+  background-image: none;
+  .text{
+    background-color: #f977ce;
+    background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+  }
+// background-image: linear-gradient(315deg, #6617cb 0%, #cb218e 74%);
 
 }
 @mixin box-shadow() {
