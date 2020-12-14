@@ -29,8 +29,10 @@ export default {
     }
   },
   methods: {
-    register () {
-      alert('Hola Hola')
+    async register () {
+      this.disabled = true
+      const response = await this.$apiService.post('/api/authentication/register', this.data)
+      console.log(response)
     }
   }
 }

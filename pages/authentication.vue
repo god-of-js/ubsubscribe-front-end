@@ -1,7 +1,7 @@
 <template>
   <div
     class="d-flex authentication pa-5 d-flex align-center flex-column justify-end"
-    :style="register ? 'height: 80%' : 'height: 65%'"
+    style="height: 80%"
   >
     <div class="d-flex justify-space-between links no-skew">
       <span class="unsubcscribe-header unsubscribe" v-text="appName" />
