@@ -1,5 +1,5 @@
 <template>
-  <form class="row pl-5 pr-5" @submit.prevent="register">
+  <form class="row pl-5 pr-5" @submit.prevent="register($event)">
     <input v-model="data.fullName" type="text" placeholder="Full Name" class="pa-3 mb-5" required>
     <input v-model="data.email" type="email" placeholder="Email" class="pa-3 mb-5" required>
     <input v-model.number="data.phoneNumber" type="number" placeholder="Phone Number" class="pa-3 mb-5" required>

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     register () {
-      alert('Hola Hola')
+      this.$apiService()
     }
   }
 }
