@@ -1,5 +1,5 @@
 <template>
-  <form class="row pl-5 pr-5" @submit.prevent="register($event)">
+  <form class="row pl-5 pr-5" @submit.prevent="register">
     <input v-model="data.fullName" type="text" placeholder="Full Name" class="pa-3 mb-5" required>
     <input v-model="data.email" type="email" placeholder="Email" class="pa-3 mb-5" required>
     <input v-model.number="data.phoneNumber" type="number" placeholder="Phone Number" class="pa-3 mb-5" required>
@@ -30,13 +30,13 @@ export default {
   },
   methods: {
     async register () {
+      alert('boom v1')
       this.disabled = true
       try {
-        console.log(this.disabled)
         const response = await this.$apiService.post('/authentication/register', this.data)
-        console.log(response)
+        this.$store.commit('', response)
       } catch (err) {
-        console.log(err)
+        this.$store.commit('', err)
       }
     }
   }
