@@ -31,8 +31,13 @@ export default {
   methods: {
     async register () {
       this.disabled = true
-      const response = await this.$apiService.post('/api/authentication/register', this.data)
-      console.log(response)
+      try {
+        console.log(this.disabled)
+        const response = await this.$apiService.post('/authentication/register', this.data)
+        console.log(response)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }

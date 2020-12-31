@@ -12,12 +12,12 @@ export default (context, inject) => {
     cookies.remove('AuthToken')
   }
   const getToken = () => {
-    cookies.get('AuthToken')
+    return cookies.get('AuthToken')
   }
   const token = getToken() || ''
   const config = {
     baseURL: `${BASE_URL}/api/v1`,
-    params: {},
+    timeout: 5000,
     headers: {
       Authorization: `Bearer ${token}`
     }
