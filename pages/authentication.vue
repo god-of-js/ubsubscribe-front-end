@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-flex authentication pa-5 d-flex align-center flex-column justify-end"
+    :class="[register ? 'justify-end': 'justify-center', 'd-flex authentication pa-5 d-flex align-center flex-column ']"
     style="height: 80%"
   >
     <div class="d-flex justify-space-between links no-skew">

@@ -2,7 +2,7 @@
   <button
     :class="{
       'btn': true,
-      'btn-disabled':loading || disabled
+      'btn-disabled': loading || disabled
     }"
     :disabled="loading || disabled"
     v-on="$listeners"

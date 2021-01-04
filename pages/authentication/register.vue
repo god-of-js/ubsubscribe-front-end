@@ -1,8 +1,8 @@
 <template>
   <form class="row pl-5 pr-5" @submit.prevent="register">
-    <input v-model="data.fullName" type="text" placeholder="Full Name" class="pa-3 mb-5" required>
+    <input v-model="data.name" type="text" placeholder="Full Name" class="pa-3 mb-5" required>
     <input v-model="data.email" type="email" placeholder="Email" class="pa-3 mb-5" required>
-    <input v-model.number="data.phoneNumber" type="number" placeholder="Phone Number" class="pa-3 mb-5" required>
+    <input v-model.number="data.phone" type="number" placeholder="Phone Number" class="pa-3 mb-5" required>
     <input v-model="data.password" type="password" placeholder="Password" class="pa-3 mb-5" required>
     <default-button :loading="loading" :disabled="disabled">
       Register
@@ -10,7 +10,7 @@
   </form>
 </template>
 <script>
-import DefaultButton from '@/components/DefaultButton.vue'
+import DefaultButton from '../../components/DefaultButton.vue'
 export default {
   name: 'Register',
   components: {
@@ -19,10 +19,10 @@ export default {
   data: () => {
     return {
       data: {
-        fullName: null,
-        email: null,
-        phoneNumber: null,
-        password: null
+        name: 'null',
+        email: 'null@null.com',
+        phone: +234704540404,
+        password: 'nullnull'
       },
       loading: false,
       disabled: false
@@ -30,13 +30,14 @@ export default {
   },
   methods: {
     async register () {
-      alert('boom v1')
       this.disabled = true
       try {
         const response = await this.$apiService.post('/authentication/register', this.data)
         this.$store.commit('', response)
+        this.disabled = false
       } catch (err) {
         this.$store.commit('', err)
+        this.disabled = false
       }
     }
   }

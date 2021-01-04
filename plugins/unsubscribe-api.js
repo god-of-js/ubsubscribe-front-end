@@ -1,20 +1,20 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import axios from 'axios'
 import get from 'lodash/get'
 import cookies from 'js-cookie'
 import { BASE_URL } from '../config/config'
 export default (context, inject) => {
   const { redirect } = context
-  const saveToken = (token) => {
-    cookies.set('AuthToken', token)
+  const saveValue = (nameOfValue = 'AuthToken', value) => {
+    cookies.set(nameOfValue, value)
   }
-  const removeToken = () => {
-    cookies.remove('AuthToken')
+  const removeValue = (nameOfValue = 'AuthToken') => {
+    cookies.remove(nameOfValue)
   }
-  const getToken = () => {
-    return cookies.get('AuthToken')
+  const getValue = (nameOfValue = 'AuthToken') => {
+    return cookies.get(nameOfValue)
   }
-  const token = getToken() || ''
+  const token = getValue() || ''
   const config = {
     baseURL: `${BASE_URL}/api/v1`,
     timeout: 5000,
@@ -31,14 +31,16 @@ export default (context, inject) => {
       if (status === 404) {
         redirect('/404')
       } else {
-        Vue.$store.commit('notifications/setNotification', data)
+        console.log(data)
+        // Vue.$store.commit('notifications/setNotification', data)
       }
     }
   )
   const ApiService = {
     ...service,
-    removeToken,
-    saveToken
+    removeValue,
+    saveValue,
+    getValue
   }
   inject('apiService', ApiService)
 }
