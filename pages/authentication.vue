@@ -1,7 +1,6 @@
 <template>
   <div
     :class="[register ? 'justify-end': 'justify-center', 'd-flex authentication pa-5 d-flex align-center flex-column ']"
-    style="height: 80%"
   >
     <div class="d-flex justify-space-between links no-skew">
       <span class="unsubcscribe-header unsubscribe" v-text="appName" />
@@ -67,10 +66,13 @@ export default {
 @import "@/assets/style/mixins.scss";
 @import "@/assets/style/colors.scss";
 @import "@/assets/style/fonts.scss";
+@import "@/assets/style/sizes.scss";
+
 .authentication {
   color: #000;
   @include background-gradient();
   position: relative;
+  height: 80%;
   transform: skew(0deg, -10deg) translateY(-120px);
   font-weight: 900;
   &__card {
@@ -120,5 +122,33 @@ export default {
   text-decoration: none;
   color: $light-text;
   font-size: 0.8em;
+}
+@media screen and (max-width: $laptop-small-width) {
+  .authentication{
+    height: 100%;
+  }
+}
+@media screen and (max-width: $tablet) {
+  .authentication{
+    height: 105%;
+  }
+}
+@media screen and (max-width: 728px) {
+  .authentication{
+    height: 107%;
+  }
+}
+@media screen and (max-width: $mobile-large-width) {
+  .authentication{
+    height: 109%;
+  }
+}
+@media screen and (max-width: $mobile) {
+  .authentication{
+    height: 115%;
+    .links{
+      padding-bottom: 5px;
+    }
+  }
 }
 </style>

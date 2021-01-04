@@ -1,6 +1,7 @@
+import state from './state'
+import mutations from './mutations'
 export default {
   namespaced: true,
-  state: {
-    appName: 'Unsubscribe.io'
-  }
+  state,
+  mutations
 }

@@ -25,16 +25,30 @@ export default {
     }
   },
   methods: {
-    async login () {
+    login () {
       this.disabled = true
-      try {
-        const response = await this.$apiService.post('/authentication/login', this.data)
-        this.$store.commit('', response)
+      let alert
+      this.$apiService.post('/authentication/login', this.data).then((result) => {
+        console.log(result)
+        alert = {
+          text: 'User signed in successfully',
+          type: 'success',
+          position: 'bottom',
+          parentPosition: ''
+        }
+        this.$store.commit('app/setAlert', alert)
         this.disabled = false
-      } catch (err) {
-        this.$store.commit('', err)
+      }).catch((err) => {
+        console.log(err)
+        alert = {
+          text: err.message,
+          type: 'error',
+          position: 'bottom',
+          parentPosition: ''
+        }
+        this.$store.commit('app/setAlert', alert)
         this.disabled = false
-      }
+      })
     }
   }
 }
