@@ -27,9 +27,14 @@ export default {
   methods: {
     async login () {
       this.disabled = true
+      this.loading = true
       const response = await this.$apiService.post('/authentication/login', this.data)
       this.disabled = false
-      console.log(response)
+      this.loading = false
+      if (!response) { return '' }
+      this.$apiService.saveValue('User', response.data.data)
+      this.$apiService.saveValue('AuthToken', response.data.data.token)
+      this.$router.push('/dashboard/overview')
     }
   }
 }
