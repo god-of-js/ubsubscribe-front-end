@@ -3,7 +3,7 @@
     <input v-model="data.email" type="email" placeholder="Email" class="pa-3 mb-5" required>
     <input v-model="data.password" type="password" placeholder="Password" class="pa-3 mb-5" required>
     <default-button :loading="loading" :disabled="disabled">
-      Register
+      Login
     </default-button>
   </form>
 </template>
@@ -25,30 +25,11 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
       this.disabled = true
-      let alert
-      this.$apiService.post('/authentication/login', this.data).then((result) => {
-        console.log(result)
-        alert = {
-          text: 'User signed in successfully',
-          type: 'success',
-          position: 'bottom',
-          parentPosition: ''
-        }
-        this.$store.commit('app/setAlert', alert)
-        this.disabled = false
-      }).catch((err) => {
-        console.log(err)
-        alert = {
-          text: err.message,
-          type: 'error',
-          position: 'bottom',
-          parentPosition: ''
-        }
-        this.$store.commit('app/setAlert', alert)
-        this.disabled = false
-      })
+      const response = await this.$apiService.post('/authentication/login', this.data)
+      this.disabled = false
+      console.log(response)
     }
   }
 }

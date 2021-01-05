@@ -3,8 +3,9 @@ import axios from 'axios'
 import get from 'lodash/get'
 import cookies from 'js-cookie'
 import { BASE_URL } from '../config/config'
-export default (context, inject) => {
-  const { redirect } = context
+// import store from '../store/app'
+export default (context, inject, ctx) => {
+  const { redirect, store } = context
   const saveValue = (nameOfValue = 'AuthToken', value) => {
     cookies.set(nameOfValue, value)
   }
@@ -22,17 +23,38 @@ export default (context, inject) => {
       Authorization: `Bearer ${token}`
     }
   }
+  const alert = {
+    text: '',
+    type: '',
+    position: '',
+    parentPosition: ''
+  }
   const service = axios.create(config)
   service.interceptors.response.use(
-    response => response,
+    (response) => {
+      if (!response.data.customHandle) {
+        alert.text = response.data.message
+        alert.type = 'success'
+        alert.position = 'bottom'
+        alert.parentPosition = ''
+        store.dispatch('app/getNotification', alert)
+      }
+      return response
+    },
     (error) => {
       const status = get(error, 'response.data.status', null)
-      const data = get(error, 'response.data', {})
+      const message = get(error, 'response.data.message', 'Something went wrong')
+      const customHandle = get(error, 'response.data.customHandle', false)
       if (status === 404) {
         redirect('/404')
+      } else if (!customHandle) {
+        alert.text = message
+        alert.parentPosition = 'justify-center'
+        alert.type = 'error'
+        alert.position = 'center'
+        store.dispatch('app/getNotification', alert)
       } else {
-        console.log(data)
-        // Vue.$store.commit('notifications/setNotification', data)
+        return Promise.reject(error)
       }
     }
   )

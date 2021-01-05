@@ -1,16 +1,14 @@
 <template>
   <v-app>
     <div class="app-background">
-      <transition-group>
-        <notification
-          v-for="(notification, index) in notifications"
-          :key="index"
-          :type="notification.type"
-          :position="notification.position"
-          :parent-position="notification.parentPosition"
-          :not-text="notification.text"
-        />
-      </transition-group>
+      <notification
+        v-for="(notification, index) in notifications"
+        :key="index"
+        :type="notification.type"
+        :position="notification.position"
+        :parent-position="notification.parentPosition"
+        :not-text="notification.text"
+      />
       <nuxt />
     </div>
   </v-app>

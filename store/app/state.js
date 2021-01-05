@@ -5,7 +5,6 @@ export default {
 /****
  * Notification object should look like this.
  * {
-    header: 'Success',
     text: 'User signed in successfully',
     type: 'success',
     position: 'center',
