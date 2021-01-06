@@ -1,55 +1,17 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :mini-variant="miniVariant"
-    :clipped="clipped"
-    fixed
-    app
-  >
-    <v-list>
-      <v-list-item
-        v-for="(item, i) in items"
-        :key="i"
-        :to="item.to"
-        router
-        exact
-      >
-        <v-list-item-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-action>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.title" />
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
+  <div class="sidebar">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis deleniti, possimus assumenda quidem velit aut aperiam cum deserunt eius laborum nihil, autem repellendus dolorem, praesentium ea quibusdam. Harum, sit facere?
+  </div>
 </template>
-
 <script>
 export default {
-  name: 'DashboardSideBar',
-  data () {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
-  }
+  name: 'DashboardSideBar'
 }
 </script>
+
+<style lang="scss" scoped>
+  .dashbar{
+    width: 3vw;
+    position: fixed;
+  }
+</style>

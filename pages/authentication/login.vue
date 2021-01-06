@@ -17,8 +17,8 @@ export default {
   data: () => {
     return {
       data: {
-        email: 'null@null.com',
-        password: 'nullnull'
+        email: '',
+        password: ''
       },
       loading: false,
       disabled: false

@@ -69,7 +69,7 @@ export default {
 @import "@/assets/style/sizes.scss";
 
 .authentication {
-  color: #000;
+  color: $secondary-text-color;
   @include background-gradient();
   position: relative;
   height: 80%;
