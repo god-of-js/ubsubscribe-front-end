@@ -34,7 +34,7 @@ export default {
       if (!response) { return '' }
       this.$apiService.saveValue('User', response.data.data)
       this.$apiService.saveValue('AuthToken', response.data.data.token)
-      this.$router.push('/dashboard/overview')
+      this.$router.push('/dashboard')
     }
   }
 }

@@ -34,4 +34,7 @@ export default {
   background-color: #fff;
   min-height: 100%;
 }
+html {
+  font-family: Montserrat;
+}
 </style>

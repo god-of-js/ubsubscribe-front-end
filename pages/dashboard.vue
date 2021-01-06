@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard d-flex">
     <dashboard-side-bar />
-    <div>
+    <div class="dashboard__content">
       <dashboard-nav-bar />
       <nuxt-child />
     </div>
@@ -25,5 +25,9 @@ export default {
   min-height: 100%;
   color: #000000;
   background: $primary-background;
+  &__content{
+    width: 85%;
+    margin-left: 15%;
+  }
 }
 </style>
