@@ -1,7 +1,7 @@
 <template>
   <section class="dashboard-statistic-card pa-6">
-    <article v-text="nameOfStat" class="nameOfStat" />
-    <article v-text="numericalValue" class="numericalValue" />
+    <article class="nameOfStat" v-text="nameOfStat" />
+    <article class="numericalValue" v-text="numericalValue" />
   </section>
 </template>
 

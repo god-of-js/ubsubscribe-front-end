@@ -1,9 +1,15 @@
 <template>
   <div class="d-flex justify-end align-center pa-5">
     <div class="pr-4">
-      <default-button>Add Subscription </default-button>
+      <default-button @click="addSubscription">
+        Add Subscription
+      </default-button>
     </div>
-    <button class="round__button"><v-icon color="#0a2e65" size="30" class="icon" >mdi-face</v-icon></button>
+    <button class="round__button">
+      <v-icon color="#0a2e65" size="30" class="icon">
+        mdi-face
+      </v-icon>
+    </button>
   </div>
 </template>
 <script>
@@ -11,6 +17,15 @@ export default {
   name: 'DashboardNavBar',
   components: {
     DefaultButton: () => import('../DefaultButton')
+  },
+  methods: {
+    addSubscription () {
+      this.$store.commit('modals/setModalAttributes', {
+        modalComponent: '',
+        modalCommonData: {},
+        dialog: true
+      })
+    }
   }
 }
 </script>

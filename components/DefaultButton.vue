@@ -1,12 +1,12 @@
 <template>
   <button
+    id="btn"
     :class="{
       'btn': true,
       'btn-disabled': loading || disabled
     }"
     :disabled="loading || disabled"
     v-on="$listeners"
-    id="btn"
   >
     <div v-if="!loading" class="text">
       <slot />

@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <div class="app-background">
+      <modals />
       <notification
         v-for="(notification, index) in notifications"
         :key="index"
@@ -17,13 +18,16 @@
 <script>
 import { mapState } from 'vuex'
 import Notification from '../components/notification/Notification'
+import Modals from '../components/global-modal/Modals'
 export default {
   components: {
-    Notification
+    Notification,
+    Modals
   },
   computed: {
     ...mapState({
-      notifications: state => state.app.notifications
+      notifications: state => state.app.notifications,
+      modalComponent: state => state.app.modalComponent
     })
   }
 }

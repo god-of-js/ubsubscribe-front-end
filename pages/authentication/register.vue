@@ -44,7 +44,7 @@ export default {
         this.$apiService.saveValue('AuthToken', response.data.data.token)
         this.$router.push('/dashboard')
       } catch (err) {
-        console.log(err)
+        return err
       }
       this.disabled = false
       this.loading = false
