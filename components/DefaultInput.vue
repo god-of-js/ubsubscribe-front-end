@@ -1,22 +1,25 @@
 <template>
- <input :type="type" v-on="$listeners" v-bind="$attrs" >
+  <input :type="type" v-on="$listeners">
 </template>
 
 <script>
 export default {
-   name: 'DefaultInput',
-   props: {
-      type: {
-        type: String,
-        required: false,
-        default: 'text'
-      },
-      value: {
-        type: [String, Number],
-        required: true
-      },
-
-   }   
+  name: 'DefaultInput',
+  model: {
+    prop: 'value',
+    event: 'update'
+  },
+  props: {
+    type: {
+      type: String,
+      required: false,
+      default: 'text'
+    },
+    value: {
+      type: [String, Number],
+      required: true
+    }
+  }
 }
 </script>
 

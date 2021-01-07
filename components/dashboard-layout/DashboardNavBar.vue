@@ -21,7 +21,7 @@ export default {
   methods: {
     addSubscription () {
       this.$store.commit('modals/setModalAttributes', {
-        modalComponent: '',
+        modalComponent: 'Subscription',
         modalCommonData: {},
         dialog: true
       })

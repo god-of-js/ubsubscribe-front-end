@@ -11,7 +11,7 @@
   >
     <div class="modal__inner pa-7">
       <div class="d-flex justify-end">
-        <button @click="cancelModal" class="pa-1">
+        <button class="pa-1" @click="cancelModal">
           <v-icon color="#be1338" size="25">
             mdi-close
           </v-icon>
@@ -20,7 +20,6 @@
       <component
         :is="modalComponent"
         keep-alive
-        :common-data="modalCommonData"
       />
     </div>
   </v-dialog>
@@ -32,7 +31,7 @@ import ModalComponents from './ModalComponents'
 export default {
   name: 'Modals',
   components: {
-    ModalComponents
+    ...ModalComponents
   },
   data: () => {
     return {
