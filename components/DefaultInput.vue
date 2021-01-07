@@ -1,5 +1,5 @@
 <template>
-  <input :type="type" v-on="$listeners" @input="$emit('update', $event.target.value)" class="pa-3">
+  <input v-on="$listeners" @input="$emit('update', $event.target.value)" class="pa-3">
 </template>
 
 <script>
@@ -10,11 +10,6 @@ export default {
     event: 'update'
   },
   props: {
-    type: {
-      type: String,
-      required: false,
-      default: 'text'
-    },
     value: {
       type: [String, Number],
       required: true

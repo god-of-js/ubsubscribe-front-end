@@ -1,7 +1,9 @@
 <template>
   <div class="pt-4">
     <form action="">
-    <default-input v-model="name" class="mb-5"/>
+    <default-input v-model="name" class="mb-5" placeholder="Name of website"/>
+    <default-input v-model="name" class="mb-5" placeholder="Url of website"/>
+    <default-input v-model="name" class="mb-5" placeholder="Proposed date of reminder" type="date"/>
     <default-button v-text="'Add Subscription'"/>
     </form>
   </div>
@@ -20,9 +22,6 @@ export default {
     }
   },
   methods: {
-    prin () {
-      console.log(this.name + 'did it?')
-    }
   }
 }
 </script>
