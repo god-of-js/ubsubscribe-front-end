@@ -1,10 +1,9 @@
 <template>
-  <div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur odio repellendus pariatur architecto nesciunt illo praesentium delectus accusamus placeat suscipit expedita officia quasi velit laudantium omnis, cum nisi nobis quam.
-    <default-input v-model="name" />
-    <button @click="prin">
-      Print
-    </button>
+  <div class="pt-4">
+    <form action="">
+    <default-input v-model="name" class="mb-5"/>
+    <default-button v-text="'Add Subscription'"/>
+    </form>
   </div>
 </template>
 
@@ -12,7 +11,8 @@
 export default {
   name: 'Subscription',
   components: {
-    DefaultInput: () => import('../../DefaultInput')
+    DefaultInput: () => import('../../DefaultInput'),
+    DefaultButton: () => import('../../DefaultButton')
   },
   data: () => {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     prin () {
-      console.log(this.name)
+      console.log(this.name + 'did it?')
     }
   }
 }
