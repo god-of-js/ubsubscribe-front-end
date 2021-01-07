@@ -1,6 +1,8 @@
 export default {
   appName: 'Unsubscribe.io',
-  notifications: []
+  notifications: [],
+  modalComponent: '',
+  modalCommonData: {}
 }
 /****
  * Notification object should look like this.

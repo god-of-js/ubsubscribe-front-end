@@ -53,9 +53,8 @@ export default (context, inject, ctx) => {
         alert.type = 'error'
         alert.position = 'center'
         store.dispatch('app/getNotification', alert)
-      } else {
-        return Promise.reject(error)
       }
+      return Promise.reject(error)
     }
   )
   const ApiService = {

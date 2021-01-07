@@ -6,6 +6,7 @@
     }"
     :disabled="loading || disabled"
     v-on="$listeners"
+    id="btn"
   >
     <div v-if="!loading" class="text">
       <slot />

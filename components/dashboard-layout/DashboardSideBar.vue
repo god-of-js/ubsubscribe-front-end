@@ -18,14 +18,14 @@
           <span class="sidebar__route__text"> {{ route.text }} </span>
         </li>
       </NuxtLink>
-      <li
+      <!-- <li
         :class="['d-flex align-center sidebar__route pa-3 mt-3']"
       >
         <v-icon color="#0a2e65" class="mr-6 icon" size="22">
           mdi-power
         </v-icon>
         <span class="sidebar__route__text"> Log Out </span>
-      </li>
+      </li> -->
     </ul>
   </aside>
 </template>
@@ -49,6 +49,11 @@ export default {
           path: '/dashboard/settings',
           text: 'Settings',
           icon: 'mdi-cog'
+        },
+        {
+          path: '/authentication/register',
+          text: 'Log Out',
+          icon: 'mdi-power'
         }
       ]
     }

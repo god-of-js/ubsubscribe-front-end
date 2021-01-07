@@ -28,13 +28,16 @@ export default {
     async login () {
       this.disabled = true
       this.loading = true
-      const response = await this.$apiService.post('/authentication/login', this.data)
+      try {
+        const response = await this.$apiService.post('/authentication/login', this.data)
+        this.$apiService.saveValue('User', response.data.data)
+        this.$apiService.saveValue('AuthToken', response.data.data.token)
+        this.$router.push('/dashboard')
+      } catch (err) {
+        console.log(err)
+      }
       this.disabled = false
       this.loading = false
-      if (!response) { return '' }
-      this.$apiService.saveValue('User', response.data.data)
-      this.$apiService.saveValue('AuthToken', response.data.data.token)
-      this.$router.push('/dashboard')
     }
   }
 }
