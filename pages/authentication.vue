@@ -5,12 +5,8 @@
     <div class="d-flex justify-space-between links no-skew">
       <span class="unsubcscribe-header unsubscribe" v-text="appName" />
       <div>
-        <NuxtLink to="/authentication/login" class="mr-2 ml-2 nuxt-link no-link">
-          Login
-        </NuxtLink>
-        <NuxtLink to="/authentication/register" class="mr-2 ml-2 nuxt-link no-link">
-          Register
-        </NuxtLink>
+        <NuxtLink to="/authentication/login" class="mr-2 ml-2 nuxt-link no-link" v-text="'Login'" />
+        <NuxtLink to="/authentication/register" class="mr-2 ml-2 nuxt-link no-link" v-text="'Register'" />
       </div>
     </div>
     <div
@@ -30,12 +26,8 @@
           </div>
         </div>
         <div class="authentication__text">
-          <div class="authentication__text__header">
-            Welcome subscriber
-          </div>
-          <div class="authentication__text__sub-title">
-            Complete your authentication to gain access to your dashboard.
-          </div>
+          <div class="authentication__text__header" v-text="'Welcome subscriber'" />
+          <div class="authentication__text__sub-title" v-text="'Complete your authentication to gain access to your dashboard.'" />
         </div>
       </section>
       <section class="pa-5 authentication-subpage">

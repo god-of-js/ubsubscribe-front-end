@@ -1,10 +1,14 @@
 <template>
   <div class="pt-4">
     <form action="">
-    <default-input v-model="name" class="mb-5" placeholder="Name of website"/>
-    <default-input v-model="name" class="mb-5" placeholder="Url of website"/>
-    <default-input v-model="name" class="mb-5" placeholder="Proposed date of reminder" type="date"/>
-    <default-button v-text="'Add Subscription'"/>
+      <default-input v-model="name" class="mb-5" placeholder="Name of application" />
+      <default-input v-model="name" class="mb-5" placeholder="Url of application" />
+      <default-input v-model="name" class="mb-5" placeholder="Amount to be charged by application" />
+      <span v-text="'Activation date of subscription'" />
+      <default-input v-model="name" class="mb-5" placeholder="Date subscription was activated" type="date" />
+      <span>Proposed date of reminder</span>
+      <default-input v-model="name" class="mb-5" type="date" />
+      <default-button v-text="'Add Subscription'" />
     </form>
   </div>
 </template>

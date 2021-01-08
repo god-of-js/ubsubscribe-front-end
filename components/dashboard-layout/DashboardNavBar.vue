@@ -1,9 +1,7 @@
 <template>
   <div class="d-flex justify-end align-center pa-5">
     <div class="pr-4">
-      <default-button @click="addSubscription">
-        Add Subscription
-      </default-button>
+      <default-button @click="addSubscription" v-text="'Add Subscription'" />
     </div>
     <button class="round__button">
       <v-icon color="#0a2e65" size="30" class="icon">

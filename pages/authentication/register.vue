@@ -10,7 +10,7 @@
       required
     />
     <default-input v-model="data.password" type="password" placeholder="Password" class="pa-3 mb-5" required />
-    <default-button :loading="loading" :disabled="disabled">
+    <default-button :loading="loading" :disabled="disabled" >
       Register
     </default-button>
   </form>

@@ -1,5 +1,5 @@
 <template>
-  <input v-on="$listeners" @input="$emit('update', $event.target.value)" class="pa-3">
+  <input class="pa-3" v-on="$listeners" @input="$emit('update', $event.target.value)">
 </template>
 
 <script>
