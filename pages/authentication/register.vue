@@ -10,7 +10,7 @@
       required
     />
     <default-input v-model="data.password" type="password" placeholder="Password" class="pa-3 mb-5" required />
-    <default-button :loading="loading" :disabled="disabled" >
+    <default-button :loading="loading" :disabled="disabled">
       Register
     </default-button>
   </form>
@@ -29,7 +29,7 @@ export default {
       data: {
         name: '',
         email: '',
-        phone: null,
+        phone: '',
         password: ''
       },
       loading: false,
@@ -37,9 +37,12 @@ export default {
     }
   },
   methods: {
+    disabledStatus (status) {
+      this.loading = status
+      this.disabled = status
+    },
     async register () {
-      this.disabled = true
-      this.loading = true
+      this.disabledStatus(true)
       try {
         const response = await this.$apiService.post('/authentication/register', this.data)
         this.$apiService.saveValue('User', response.data.data)
@@ -48,8 +51,7 @@ export default {
       } catch (err) {
         return err
       }
-      this.disabled = false
-      this.loading = false
+      this.disabledStatus(false)
     }
   }
 }
