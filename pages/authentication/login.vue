@@ -8,6 +8,7 @@
   </form>
 </template>
 <script>
+import get from 'lodash/get'
 import DefaultButton from '../../components/DefaultButton.vue'
 import DefaultInput from '../../components/DefaultInput.vue'
 export default {
@@ -35,13 +36,16 @@ export default {
       this.disabledStatus(true)
       try {
         const response = await this.$apiService.post('/authentication/login', this.data)
-        this.$apiService.saveValue('User', response.data.data)
-        this.$apiService.saveValue('AuthToken', response.data.data.token)
+        const data = get(response, 'data.data', {})
+        this.$apiService.saveValue('User', data)
+        this.$store.commit('user/setUser', data)
+        this.$apiService.saveValue('AuthToken', data.token)
         this.$router.push('/dashboard')
+        this.disabledStatus(false)
       } catch (err) {
+        this.disabledStatus(false)
         return err
       }
-      this.disabledStatus(false)
     }
   }
 }

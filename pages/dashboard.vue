@@ -16,6 +16,10 @@ export default {
     DashboardSideBar,
     DashboardNavBar
   }
+  // async asyncData (ctx) {
+  //   const { store } = ctx
+  //   await store.dispatch('user/getUser')
+  // }
 }
 </script>
 

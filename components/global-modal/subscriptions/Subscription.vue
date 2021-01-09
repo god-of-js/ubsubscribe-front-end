@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Subscription',
   components: {
@@ -34,6 +35,11 @@ export default {
       disabled: false
     }
   },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
   methods: {
     disabledStatus (status) {
       this.loading = status
@@ -41,14 +47,21 @@ export default {
     },
     async addSubscription () {
       this.disabledStatus(true)
+      console.log(this.user)
+      // this.data.subscriber = this.user._id
+      console.log(this.data)
+      console.log(this.data.subscriber)
       try {
         const response = await this.$apiService.post('/subscriptions/add-subscription', this.data)
         console.log(response)
       } catch (err) {
-        console.log(err.response)
+        console.log(err)
       }
       this.disabledStatus(false)
     }
+  },
+  mounted () {
+    console.log(this.$store.state.user)
   }
 }
 </script>

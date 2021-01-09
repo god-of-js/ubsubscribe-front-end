@@ -18,14 +18,15 @@
           <span class="sidebar__route__text"> {{ route.text }} </span>
         </li>
       </NuxtLink>
-      <!-- <li
+      <li
         :class="['d-flex align-center sidebar__route pa-3 mt-3']"
+        @click="logOut"
       >
         <v-icon color="#0a2e65" class="mr-6 icon" size="22">
           mdi-power
         </v-icon>
         <span class="sidebar__route__text"> Log Out </span>
-      </li> -->
+      </li>
     </ul>
   </aside>
 </template>
@@ -49,11 +50,6 @@ export default {
           path: '/dashboard/settings',
           text: 'Settings',
           icon: 'mdi-cog'
-        },
-        {
-          path: '/authentication/register',
-          text: 'Log Out',
-          icon: 'mdi-power'
         }
       ]
     }
@@ -66,6 +62,11 @@ export default {
   methods: {
     checkRoute (routePath) {
       return routePath === this.$route.fullPath
+    },
+    logOut () {
+      this.$apiService.removeValue('AuthToken')
+      this.$apiService.removeValue('User')
+      this.$router.push('/authentication/register')
     }
   }
 }

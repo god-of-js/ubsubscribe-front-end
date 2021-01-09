@@ -3,7 +3,6 @@ import axios from 'axios'
 import get from 'lodash/get'
 import cookies from 'js-cookie'
 import { BASE_URL } from '../config/config'
-// import store from '../store/app'
 export default (context, inject, ctx) => {
   const { redirect, store } = context
   const saveValue = (nameOfValue = 'AuthToken', value) => {
@@ -15,12 +14,13 @@ export default (context, inject, ctx) => {
   const getValue = (nameOfValue = 'AuthToken') => {
     return cookies.get(nameOfValue)
   }
-  const token = getValue() || ''
+  const tokenString = `Bearer ${getValue() || ' '}`
+  console.log(tokenString)
   const config = {
     baseURL: `${BASE_URL}/api/v1`,
     timeout: 5000,
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: tokenString
     }
   }
   const alert = {
@@ -59,9 +59,9 @@ export default (context, inject, ctx) => {
   )
   const ApiService = {
     ...service,
-    removeValue,
     saveValue,
-    getValue
+    getValue,
+    removeValue
   }
   inject('apiService', ApiService)
 }
