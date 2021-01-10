@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addSubscription" class="pt-4">
+  <form class="pt-4" @submit.prevent="addSubscription">
     <default-input v-model="data.name" class="mb-5" placeholder="Name of application" required />
     <default-input v-model="data.url" class="mb-5" placeholder="Url of application" />
     <default-input v-model.number="data.amount" class="mb-5" placeholder="Amount to be charged by application" type="number" required />
@@ -40,6 +40,9 @@ export default {
       user: state => state.user
     })
   },
+  mounted () {
+    console.log(this.$store.state.user)
+  },
   methods: {
     disabledStatus (status) {
       this.loading = status
@@ -59,9 +62,6 @@ export default {
       }
       this.disabledStatus(false)
     }
-  },
-  mounted () {
-    console.log(this.$store.state.user)
   }
 }
 </script>

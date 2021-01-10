@@ -14,13 +14,12 @@ export default (context, inject, ctx) => {
   const getValue = (nameOfValue = 'AuthToken') => {
     return cookies.get(nameOfValue)
   }
-  const tokenString = `Bearer ${getValue() || ' '}`
-  console.log(tokenString)
+  const token = getValue()
   const config = {
     baseURL: `${BASE_URL}/api/v1`,
     timeout: 5000,
     headers: {
-      Authorization: tokenString
+      Authorization: `Bearer ${token || ' '}`
     }
   }
   const alert = {
