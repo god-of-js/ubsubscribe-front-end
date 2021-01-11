@@ -29,13 +29,6 @@ export default {
       notifications: state => state.app.notifications,
       modalComponent: state => state.app.modalComponent
     })
-  },
-  mounted () {
-    try {
-      this.$store.dispatch('users/getAllUsers')
-    } catch (err) {
-      console.log(err)
-    }
   }
 }
 </script>

@@ -22,25 +22,20 @@ export default (context, inject, ctx) => {
       Authorization: `Bearer ${token || ' '}`
     }
   }
-  const alert = {
-    text: '',
-    type: '',
-    position: '',
-    parentPosition: ''
-  }
   const service = axios.create(config)
   service.interceptors.response.use(
     (response) => {
       const responseObj = JSON.parse(response.data)
+      if (responseObj.status === 'fail') {
+        const alert = errorAlert(responseObj.message)
+        store.dispatch('app/getNotification', alert)
+        return Promise.reject(response)
+      }
       if (!responseObj.data.customHandle) {
-        alert.text = responseObj.message
-        alert.type = 'success'
-        alert.position = 'bottom'
-        alert.parentPosition = ''
+        const alert = successAlert(responseObj.message)
         store.dispatch('app/getNotification', alert)
       }
-      Promise.resolve(responseObj)
-      // return responseObj   
+      return Promise.resolve(responseObj)
     },
     (error) => {
       const parsedError = JSON.parse(error)
@@ -50,13 +45,9 @@ export default (context, inject, ctx) => {
       if (status === 404) {
         redirect('/404')
       } else if (!customHandle) {
-        alert.text = message
-        alert.parentPosition = 'justify-center'
-        alert.type = 'error'
-        alert.position = 'center'
+        const alert = errorAlert(message)
         store.dispatch('app/getNotification', alert)
       }
-      console.log(parsedError.response)
       return Promise.reject(parsedError)
     }
   )
@@ -67,4 +58,25 @@ export default (context, inject, ctx) => {
     removeValue
   }
   inject('apiService', ApiService)
+}
+
+const alert = {
+  text: '',
+  type: '',
+  position: '',
+  parentPosition: ''
+}
+function errorAlert (message) {
+  alert.text = message
+  alert.parentPosition = 'justify-center'
+  alert.type = 'error'
+  alert.position = 'center'
+  return alert
+}
+function successAlert (message) {
+  alert.text = message
+  alert.type = 'success'
+  alert.position = 'bottom'
+  alert.parentPosition = ''
+  return alert
 }

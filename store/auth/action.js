@@ -4,6 +4,7 @@ export default {
   async authenticate ({ commit }, { url, dataObj }) {
     try {
       const response = await this.$apiService.post(url, dataObj)
+      console.log(response)
       const data = get(response, 'data.data', {})
       this.$apiService.saveValue('User', data)
       commit('user/setUser', data, { root: true })
