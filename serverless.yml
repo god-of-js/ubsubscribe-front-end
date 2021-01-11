@@ -1,18 +1,25 @@
 service: serverless
 
+frameworkVersion: '2'
+
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
   profile: godofjs
-  region: us-west-1
+  region: us-east-1
   stage: dev
 
 plugins:
   - serverless-offline
 
 functions:
-  api:
-    handler: functions/auth.handler
+  register:
+    handler: api/controllers/auth.registrationHandler
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: POST /api/v1/authentication/register
+  login:
+    handler: api/controllers/auth.loginHandler
+    events:
+      - http: POST /api/v1/authentication/login
+

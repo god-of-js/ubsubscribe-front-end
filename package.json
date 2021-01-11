@@ -8,7 +8,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
+    "lint": "yarn lint:js",
+    "watch": "sls offline start --port 4500"
   },
   "dependencies": {
     "@nuxt/ufo": "^0.5.4",
@@ -17,9 +18,10 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
-    "node-fetch": "^2.6.1",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "serverless-offline": "^6.8.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

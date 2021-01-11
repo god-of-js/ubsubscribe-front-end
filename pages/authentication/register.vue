@@ -16,7 +16,6 @@
   </form>
 </template>
 <script>
-import get from 'lodash/get'
 import DefaultButton from '../../components/DefaultButton.vue'
 import DefaultInput from '../../components/DefaultInput.vue'
 export default {
@@ -44,16 +43,7 @@ export default {
     },
     async register () {
       this.disabledStatus(true)
-      try {
-        const response = await this.$apiService.post('/authentication/register', this.data)
-        const data = get(response, 'data.data', {})
-        this.$apiService.saveValue('User', data)
-        this.$store.commit('user/setUser', data)
-        this.$apiService.saveValue('AuthToken', data.token)
-        this.$router.push('/dashboard')
-      } catch (err) {
-        return err
-      }
+      await this.$store.dispatch('auth/authenticate', { url: '/authentication/register', dataObj: this.data })
       this.disabledStatus(false)
     }
   }

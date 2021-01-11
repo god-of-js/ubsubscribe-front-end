@@ -16,7 +16,7 @@ export default (context, inject, ctx) => {
   }
   const token = getValue()
   const config = {
-    baseURL: `${BASE_URL}/api/v1`,
+    baseURL: `${BASE_URL}/dev/api/v1`,
     timeout: 5000,
     headers: {
       Authorization: `Bearer ${token || ' '}`
@@ -31,19 +31,22 @@ export default (context, inject, ctx) => {
   const service = axios.create(config)
   service.interceptors.response.use(
     (response) => {
-      if (!response.data.customHandle) {
-        alert.text = response.data.message
+      const responseObj = JSON.parse(response.data)
+      if (!responseObj.data.customHandle) {
+        alert.text = responseObj.message
         alert.type = 'success'
         alert.position = 'bottom'
         alert.parentPosition = ''
         store.dispatch('app/getNotification', alert)
       }
-      return response
+      Promise.resolve(responseObj)
+      // return responseObj   
     },
     (error) => {
-      const status = get(error, 'response.data.status', null)
-      const message = get(error, 'response.data.message', 'Something went wrong')
-      const customHandle = get(error, 'response.data.customHandle', false)
+      const parsedError = JSON.parse(error)
+      const status = get(parsedError, 'response.data.status', null)
+      const message = get(parsedError, 'response.data.message', 'Something went wrong')
+      const customHandle = get(parsedError, 'response.data.customHandle', false)
       if (status === 404) {
         redirect('/404')
       } else if (!customHandle) {
@@ -53,7 +56,8 @@ export default (context, inject, ctx) => {
         alert.position = 'center'
         store.dispatch('app/getNotification', alert)
       }
-      return Promise.reject(error)
+      console.log(parsedError.response)
+      return Promise.reject(parsedError)
     }
   )
   const ApiService = {
