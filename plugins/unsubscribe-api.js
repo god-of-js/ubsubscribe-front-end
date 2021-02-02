@@ -26,7 +26,7 @@ export default (context, inject, ctx) => {
   service.interceptors.response.use(
     (response) => {
       const responseObj = JSON.parse(response.data)
-      if (responseObj.status === 'fail') {
+      if (responseObj.status === 'fail' && !responseObj.data.customHandle) {
         const alert = errorAlert(responseObj.message)
         store.dispatch('app/getNotification', alert)
         return Promise.reject(response)
